@@ -95,7 +95,7 @@ Execute the command to run all unit tests:
 ## API REST
 ### `/schedules` 
 `IScheduleBase`:
-```json
+```ts
 {
   "id": string,
   "accountId": number,
@@ -109,7 +109,7 @@ Execute the command to run all unit tests:
 ```
 - #### POST:/schedules
   **payload**
-  ```json
+  ```ts
   {
     "account": number,
     "agent": number,
@@ -118,7 +118,7 @@ Execute the command to run all unit tests:
   }
     ```
   **response (status code: 201)**
-  ```json
+  ```ts
   {
     schedule: IScheduleBase
   }
@@ -126,7 +126,7 @@ Execute the command to run all unit tests:
   __________
 - #### PUT:/schedules
   **payload**
-  ```json
+  ```ts
   {
     "schedule": string,
     "agent": number,
@@ -135,7 +135,7 @@ Execute the command to run all unit tests:
   }
     ```
   **response (status code: 202)**
-  ```json
+  ```ts
   {
     schedule: IScheduleBase
   }
@@ -145,7 +145,7 @@ Execute the command to run all unit tests:
   **path:** `:scheduleId`
 
   **response (status code: 202)**
-  ```json
+  ```ts
   {
     schedule: IScheduleBase
   }
@@ -159,7 +159,7 @@ Execute the command to run all unit tests:
   - endTime: `datetime`
 
   **response (status code: 202)**
-  ```json
+  ```ts
   IScheduleBase[]
   ```
   __________
@@ -167,7 +167,7 @@ Execute the command to run all unit tests:
   **path:** `:scheduleId`
 
   **response (status code: 202)**
-  ```json
+  ```ts
   true
   ```
 
@@ -176,7 +176,7 @@ __________
 
 ### `/tasks` 
 `ITaskBase`:
-```json
+```ts
 {
   "id": string,
   "accountId": number,
@@ -191,7 +191,7 @@ __________
 ```
 - #### POST:/tasks
   **payload**
-  ```json
+  ```ts
   {
     "type": "work" | "break",
     "schedule": string,
@@ -200,7 +200,7 @@ __________
   }
   ```
   **response (status code: 201)**
-  ```json
+  ```ts
   {
     task: ITaskBase
   }
@@ -208,7 +208,7 @@ __________
   __________
 - #### PUT:/tasks
   **payload**
-  ```json
+  ```ts
   {
     "type": "work" | "break",
     "schedule": string,
@@ -217,7 +217,7 @@ __________
   }
   ```
   **response (status code: 202)**
-  ```json
+  ```ts
   {
     task: ITaskBase
   }
@@ -227,7 +227,7 @@ __________
   **params** `:taskId`
 
   **response (status code: 200)**
-  ```json
+  ```ts
   {
     task: ITaskBase
   }
@@ -237,7 +237,7 @@ __________
   **params** `:taskId`
 
   **response (status code: 202)**
-  ```json
+  ```ts
   true
   ```
   __________
@@ -247,14 +247,14 @@ __________
   - startTime: `date` | `datetime`
 
   **response (status code: 200)**
-  ```json
+  ```ts
   ITaskBase[]
   ```
 __________
 
 ### `/users`
 `IUserBase`:
-```json
+```ts
 {
   "id": string,
   "name": string,
@@ -263,14 +263,14 @@ __________
 ```
 - #### POST:/users
   **payload**
-  ```json
+  ```ts
   {
     "name": string,
     "email": string
   }
   ```
   **response (status code: 201)**
-  ```json
+  ```ts
   {
     user: IUserBase
   }
@@ -278,7 +278,7 @@ __________
   __________
 - #### PUT:/users
   **payload**
-  ```json
+  ```ts
   {
     "id": number,
     "name": string,
@@ -286,7 +286,7 @@ __________
   }
   ```
   **response (status code: 202)**
-  ```json
+  ```ts
   {
     user: IUserBase
   }
@@ -296,7 +296,7 @@ __________
   **params** `:userId`
 
   **response (status code: 200)**
-  ```json
+  ```ts
   {
     user: IUserBase
   }
@@ -308,7 +308,7 @@ __________
   - email: `string`
 
   **response (status code: 200)**
-  ```json
+  ```ts
   IUserBase[]
   ```
   __________
@@ -316,7 +316,7 @@ __________
   **params** `:userId`
 
   **response (status code: 202)**
-  ```json
+  ```ts
   true
   ```
 __________
