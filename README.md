@@ -324,7 +324,7 @@ __________
 
 ## Technical Debts and Improvements
 
-- Finalize the nodejs docker to run the service
+- Create all handlers to work in `AWS Lambda`
 - Implement a cache service
 - Implement GraphQL
 - Add an authentication
