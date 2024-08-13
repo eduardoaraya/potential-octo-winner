@@ -1,0 +1,17 @@
+FROM node:18.20 AS base
+ARG DATABASE_URL
+ARG PORT
+ARG API_VERSION
+ENV DATABASE_URL=$DATABASE_URL
+ENV PORT=$PORT
+ENV API_VERSION=$API_VERSION
+WORKDIR /var/api
+COPY ./api /var/api/
+COPY ./api/package*.json /var/api/
+COPY ./docker/setup.sh /var/api/setup.sh
+EXPOSE $PORT
+
+# Setup builder
+FROM base AS builder
+RUN /var/api/setup.sh
+CMD [ "npm", "run", "prod"]

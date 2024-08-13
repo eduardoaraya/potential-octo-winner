@@ -1,0 +1,42 @@
+allow-uncaught: false
+async-only: false
+bail: false
+check-leaks: false
+color: true
+delay: false
+diff: true
+exit: false
+extension: ['ts']
+fail-zero: true
+file:
+ - './tests/e2e/**/*.spect.ts'
+forbid-only: false
+forbid-pending: false
+full-trace: false
+growl: false
+ignore:
+  - './prisma/'
+  - './_build/'
+  - './node_modules/'
+inline-diffs: false
+jobs: 1
+node-option:
+  - 'unhandled-rejections=strict'
+require: 'ts-node/register'
+package: './package.json'
+parallel: false
+recursive: false
+reporter: 'spec'
+retries: 1
+slow: 75
+sort: false
+spec:
+  - './tests/e2e/**/*.spec.ts' 
+timeout: 2000
+trace-warnings: true
+ui: 'bdd'
+v8-stack-trace-limit: 100
+watch: false
+watch-files:
+  - './tests/e2e/**/*.ts'
+  - './src/**/*.ts'

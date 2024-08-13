@@ -1,0 +1,48 @@
+services:
+  database:
+    image: postgres:16.4
+    restart: always
+    user: postgres
+    networks:
+      - backend
+    environment:
+      POSTGRES_DB: leonardoaidb
+      POSTGRES_PASSWORD: root
+    ports:
+      - 5432:5432
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+  api:
+    depends_on:
+      database:
+        condition: service_healthy
+        restart: true
+    networks:
+      - backend
+    env_file: 
+      - .env
+    build:
+      dockerfile: ./docker/Dockerfile.node
+      context: .
+      args:
+          - DATABASE_URL=${DATABASE_URL}
+          - PORT=${PORT}
+          - API_VERSION=${API_VERSION}
+    ports:
+      - ${PORT}:${PORT}
+    volumes:
+      - ./api:/var/api/
+      - api_dependences:/var/api/node_modules/
+networks:
+  backend:
+    driver: bridge
+volumes:
+  postgres_data:
+    driver: local
+  api_dependences:
+    driver: local

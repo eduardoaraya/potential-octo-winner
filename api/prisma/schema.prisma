@@ -1,0 +1,58 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            Int         @id @default(autoincrement())
+  name          String
+  email         String      @unique
+  schedule      Schedule[]  @relation("UserAccount")
+  appointments  Schedule[]  @relation("UserAgent")
+  tasks         Task[]
+}
+
+model Schedule {
+  id          String @id @default(uuid())
+  account     User @relation("UserAccount", fields: [accountId], references: [id], onDelete: Cascade)
+  accountId   Int 
+
+  agent       User @relation("UserAgent", fields: [agentId], references: [id], onDelete: Cascade)
+  agentId     Int 
+
+  startTime   DateTime
+  endTime     DateTime
+
+  tasks       Task[]
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @default(now())
+  deletedAt   DateTime? 
+}
+
+enum TaskType {
+  work
+  break
+}
+
+model Task {
+  id              String @id @default(uuid())
+
+  account         User @relation(fields: [accountId], references: id, onDelete: Cascade)
+  accountId       Int 
+
+  schedule        Schedule @relation(fields: [scheduleId], references: id, onDelete: Cascade)
+  scheduleId      String
+
+  startTime       DateTime
+  duration        Int
+  type            TaskType
+
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @default(now())
+  deletedAt       DateTime? 
+}

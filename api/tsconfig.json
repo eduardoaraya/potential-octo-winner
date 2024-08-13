@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "target": "es2016" /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */,
+    "module": "commonjs" /* Specify what module code is generated. */,
+    "rootDir": "./src" /* Specify the root folder within your source files. */,
+    "outDir": "./_build/" /* Specify an output folder for all emitted files. */,
+    "esModuleInterop": true /* Emit additional JavaScript to ease support for importing CommonJS modules. This enables 'allowSyntheticDefaultImports' for type compatibility. */,
+    "forceConsistentCasingInFileNames": true /* Ensure that casing is correct in imports. */,
+    "strict": true /* Enable all strict type-checking options. */,
+    "skipLibCheck": true /* Skip type checking all .d.ts files. */,
+    "paths": {
+      "@modules/user": ["./src/modules/user/index"],
+      "@modules/schedule": ["./src/modules/schedule/index"],
+      "@modules/task": ["./src/modules/task/index"],
+      "@app/controllers/*": ["./src/app/controllers/*"],
+      "@app/routes": ["./src/app/routes/index.ts", "src/app/routes/*"],
+      "@app/bootstrap": ["./src/app/bootstrap"],
+      "@infra/*": ["./src/infra/*"]
+    }
+  },
+  "ts-node": {
+    "require": ["tsconfig-paths/register"]
+  },
+  "include": ["./src/**/*.ts"],
+  "exclude": ["./node_modules", "./prisma"]
+}
